@@ -1,6 +1,8 @@
 from sqlmodel import create_engine, SQLModel, Session
+import os
 
-DATABASE_URL = "postgresql://user:password@host:port/database"
+DATABASE_URL = f"postgresql://{os.environ.get('POSTGRES_USER')}:{
+    os.environ.get('POSTGRES_PASSWORD')}@localhost:5432/AIGlobalAntifake_db"
 engine = create_engine(DATABASE_URL)
 
 
