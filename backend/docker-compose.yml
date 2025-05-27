@@ -1,15 +1,8 @@
-secrets:
-  postgres_password:
-    environment: POSTGRES_PASSWORD
-  postgres_user:
-    environment: POSTGRES_USER
-  postgres_db:
-    environment: POSTGRES_DB
-        
-
 services:
   db:
-    image: postgres:17-alpine
+    image: postgres:latest
+    env_file:
+      - .env 
     restart: always
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -19,10 +12,7 @@ services:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-    secrets:
-      - postgres_password
-      - postgres_user
-      - postgres_db
+
 volumes:
   db_data:
 
